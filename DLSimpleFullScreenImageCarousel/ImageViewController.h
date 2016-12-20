@@ -10,6 +10,7 @@
 
 @interface ImageViewController : UIViewController{
     NSInteger index;
+    UIViewContentMode contentMode;
 }
 
 @property (nonatomic, retain) UIImage *image;
@@ -17,5 +18,8 @@
 
 -(void)setViewIndex:(NSInteger)value;
 -(NSInteger)getViewIndex;
+-(void)setContentMode:(UIViewContentMode)sentMode;
+-(UIViewContentMode)getContentMode;
+-(void)updateFame;
 
 @end

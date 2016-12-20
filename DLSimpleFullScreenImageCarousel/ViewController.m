@@ -33,6 +33,9 @@
     [img5 setUrlImage:@"http://dlsimplefullscreenimagecarousel.42noticias.com/5.jpg"];
     [img6 setUrlImage:@"http://dlsimplefullscreenimagecarousel.42noticias.com/6.jpg"];
     
+    //Set content mode
+    //[img2 setContentMode:UIViewContentModeScaleAspectFit]; //optional
+    
     [imageList addObject:img1];
     [imageList addObject:img2];
     [imageList addObject:img3];

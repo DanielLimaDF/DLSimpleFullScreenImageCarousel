@@ -25,9 +25,42 @@
     
     [self.view addSubview:imageView];
     
+    [imageView setContentMode:contentMode];
+    
     [imageView setImage:image];
     
 }
+
+
+
+-(void)viewDidAppear:(BOOL)animated{
+    
+    [self updateFame];
+    
+    [super viewDidAppear:animated];
+    
+}
+
+-(void)setContentMode:(UIViewContentMode)sentMode{
+    contentMode = sentMode;
+}
+
+-(UIViewContentMode)getContentMode{
+    return contentMode;
+}
+
+- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
+    [coordinator animateAlongsideTransition:nil completion:^(id<UIViewControllerTransitionCoordinatorContext> context) {
+        
+        [self updateFame];
+        
+    }];
+}
+
+-(void)updateFame{
+     [imageView setFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+}
+
 
 -(void)setViewIndex:(NSInteger)value{
     

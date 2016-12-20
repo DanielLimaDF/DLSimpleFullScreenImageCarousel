@@ -10,7 +10,7 @@
 #import <UIKit/UIKit.h>
 
 @interface Image : NSObject{
-    
+    UIViewContentMode contentMode;
 }
 
 @property (nonatomic,retain) UIImage *image;
@@ -21,5 +21,7 @@
 
 - (UIImage*)loadImage:(NSString *)arquivo;
 -(void)saveImage:(UIImage *)img withName:(NSString*)fileName;
+-(void)setContentMode:(UIViewContentMode)sentMode;
+-(UIViewContentMode)getContentMode;
 
 @end

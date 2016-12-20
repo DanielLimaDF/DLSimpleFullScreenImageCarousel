@@ -36,7 +36,9 @@
     
     Image *initialImage = [imageList objectAtIndex:0];
     
+    [initialImageView setContentMode:initialImage.getContentMode];
     initialImageView.image = initialImage.image;
+    
     
     [initialViewArray addObject:initialImageView];
     
@@ -54,6 +56,9 @@
         [imgViewController setViewIndex:i];
         
         Image *currentImage = [imageList objectAtIndex:i];
+        
+        [imgViewController setContentMode:currentImage.getContentMode];
+        
         imgViewController.image = currentImage.image;
         
         [viewControllerList addObject:imgViewController];
@@ -66,7 +71,6 @@
     [self addChildViewController:pageController];
     [[self view] addSubview:[pageController view]];
     [pageController didMoveToParentViewController:self];
-    
     
     pageControl = [self getPageControl];
     

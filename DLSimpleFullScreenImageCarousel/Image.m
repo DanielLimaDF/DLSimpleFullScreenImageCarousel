@@ -14,6 +14,9 @@
 #define kBgQueue dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
 
 -(id)init {
+    
+    contentMode = UIViewContentModeScaleAspectFit;
+    
     return self;
 }
 
@@ -23,6 +26,13 @@
     
 }
 
+-(void)setContentMode:(UIViewContentMode)sentMode{
+    contentMode = sentMode;
+}
+
+-(UIViewContentMode)getContentMode{
+    return contentMode;
+}
 
 -(void)setUrlImage:(NSString*)imageUrl{
     
