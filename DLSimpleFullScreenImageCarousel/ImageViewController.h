@@ -7,13 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Image.h"
 
 @interface ImageViewController : UIViewController{
     NSInteger index;
     UIViewContentMode contentMode;
+    BOOL loadingViewAlreadyCreated;
 }
 
 @property (nonatomic, retain) UIImage *image;
+@property (nonatomic, retain) Image *DLImage;
 @property (nonatomic, retain) UIImageView *imageView;
 
 -(void)setViewIndex:(NSInteger)value;

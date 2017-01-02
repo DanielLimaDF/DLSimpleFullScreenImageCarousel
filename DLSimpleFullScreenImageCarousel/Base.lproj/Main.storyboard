@@ -33,7 +33,7 @@
                                     <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="showMeThePictures" destination="PPQ-52-0h5" eventType="touchUpInside" id="nQw-4H-ZJp"/>
+                                    <action selector="showMeThePictures:" destination="PPQ-52-0h5" eventType="touchUpInside" id="2T3-UD-Bnb"/>
                                 </connections>
                             </button>
                         </subviews>

@@ -10,19 +10,23 @@
 
 @implementation Image
 @synthesize image;
+@synthesize delegate;
 
 #define kBgQueue dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
 
 -(id)init {
     
     contentMode = UIViewContentModeScaleAspectFit;
+    imageDownloadCompleted = NO;
     
     return self;
 }
 
 -(void)setLocalImage:(NSString*)imageFileName{
     
+    imageDownloadCompleted = YES;
     image =[UIImage imageNamed:imageFileName];
+    [delegate ImageFinishedLoading];
     
 }
 
@@ -47,6 +51,7 @@
     if(fileExists){
         
         image = [self loadImage:fileName];
+        imageDownloadCompleted = YES;
         
     }else{
         
@@ -59,15 +64,14 @@
                         
                         image = image2;
                         [self saveImage:image2 withName:fileName];
+                        imageDownloadCompleted = YES;
+                        [delegate ImageFinishedLoading];
                         
                     });
                 }
             }
         });
-        
     }
-    
-    
 }
 
 
@@ -93,6 +97,8 @@
     }
 }
 
-
+-(BOOL)haveFinishedDownloading{
+    return imageDownloadCompleted;
+}
 
 @end

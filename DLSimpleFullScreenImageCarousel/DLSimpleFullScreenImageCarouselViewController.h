@@ -10,7 +10,7 @@
 #import "Image.h"
 #import "ImageViewController.h"
 
-@interface DLSimpleFullScreenImageCarouselViewController : UIViewController<UIPageViewControllerDataSource, UIPageViewControllerDelegate>{
+@interface DLSimpleFullScreenImageCarouselViewController : UIViewController<UIPageViewControllerDataSource, UIPageViewControllerDelegate, ImageDelegate>{
     
     NSInteger currentIndex;
     NSInteger nextIndex;
@@ -26,8 +26,16 @@
 @property (strong, nonatomic) UIPageControl *pageControl;
 @property (strong, nonatomic) IBOutlet UIPageControl *customController;
 
+@property (nonatomic, retain) UIView *loadingView;
+@property (nonatomic, retain) UIActivityIndicatorView *loadingIndicator;
+@property (nonatomic, retain) UILabel *loadingLabel;
+
 - (UIPageControl*)getPageControl;
 
-- (IBAction)changePageByUser:(id)sender;
-
+-(IBAction)changePageByUser:(id)sender;
+-(void)startPageController;
+-(void)ImageFinishedLoading;
+-(BOOL)checkImagesDownload;
+-(void)displayLoadingView;
+-(void)hideLoadingView;
 @end

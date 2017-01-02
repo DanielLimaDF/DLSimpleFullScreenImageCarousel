@@ -20,15 +20,75 @@
 @synthesize initialViewArray;
 @synthesize pageControl;
 @synthesize customController;
+@synthesize loadingView;
+@synthesize loadingIndicator;
+@synthesize loadingLabel;
 
 - (void)viewDidLoad {
     
     [super viewDidLoad];
     
-    currentIndex = 0;
-    nextIndex = 1;
+    [customController setHidden:YES];
     
     viewControllerList = [[NSMutableArray alloc]init];
+    
+    //create view controller list
+    for (int i = 0; i < [imageList count]; i++){
+        
+        ImageViewController *imgViewController = [[ImageViewController alloc]init];
+        [imgViewController setViewIndex:i];
+        
+        Image *currentImage = [imageList objectAtIndex:i];
+        
+        [imgViewController setContentMode:currentImage.getContentMode];
+        
+        imgViewController.DLImage = currentImage;
+        imgViewController.image = currentImage.image;
+        currentImage.delegate = self;
+        
+        [viewControllerList addObject:imgViewController];
+        
+    }
+    
+    
+    if([self checkImagesDownload]){
+        [self startPageController];
+    }else{
+        [self displayLoadingView];
+    }
+    
+    
+}
+
+-(void)startPageController{
+    
+    [self hideLoadingView];
+    
+    
+    //Reset viewcontroller list to avoid delay in image exibition
+    viewControllerList = [[NSMutableArray alloc]init];
+    
+    //create view controller list
+    for (int i = 0; i < [imageList count]; i++){
+        
+        ImageViewController *imgViewController = [[ImageViewController alloc]init];
+        [imgViewController setViewIndex:i];
+        
+        Image *currentImage = [imageList objectAtIndex:i];
+        
+        [imgViewController setContentMode:currentImage.getContentMode];
+        
+        imgViewController.DLImage = currentImage;
+        imgViewController.image = currentImage.image;
+        currentImage.delegate = self;
+        
+        [viewControllerList addObject:imgViewController];
+        
+    }
+    
+    
+    currentIndex = 0;
+    nextIndex = 1;
     
     initialViewArray = [[NSMutableArray alloc]init];
     
@@ -49,22 +109,7 @@
     
     [[pageController view] setFrame:[[self view] bounds]];
     
-    //create view controller list
-    for (int i = 0; i < [imageList count]; i++){
-        
-        ImageViewController *imgViewController = [[ImageViewController alloc]init];
-        [imgViewController setViewIndex:i];
-        
-        Image *currentImage = [imageList objectAtIndex:i];
-        
-        [imgViewController setContentMode:currentImage.getContentMode];
-        
-        imgViewController.image = currentImage.image;
-        
-        [viewControllerList addObject:imgViewController];
-        
-        
-    }
+    
     
     [pageController setViewControllers:initialViewArray direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
     
@@ -78,14 +123,14 @@
     
     pageController.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height+40);
     
+    [customController setHidden:NO];
+    
     [self.view bringSubviewToFront:customController];
     
     [customController setNumberOfPages:[viewControllerList count]];
     [customController setCurrentPage:0];
     
 }
-
-
 
 
 - (UIPageControl*)getPageControl {
@@ -98,6 +143,36 @@
         }
     }
     return nil;
+}
+
+
+-(void)displayLoadingView{
+    
+    //Loading View
+    [loadingView setHidden:NO];
+    
+    loadingView = [[UIView alloc]initWithFrame:CGRectMake(self.view.frame.size.width/2 - 90, self.view.frame.size.height/2 - 25, 180, 50)];
+    [loadingView setBackgroundColor:[UIColor whiteColor]];
+    [loadingView setAlpha:0.8];
+    [loadingView.layer setCornerRadius:10];
+    
+    //Activity indicator
+    loadingIndicator = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    [loadingIndicator setFrame:CGRectMake(0, 0, 50, 50)];
+    [loadingIndicator startAnimating];
+    
+    loadingLabel = [[UILabel alloc]initWithFrame:CGRectMake(50, 0, 200, 50)];
+    [loadingLabel setTextColor:[UIColor grayColor]];
+    [loadingLabel setText:@"Loading Photos"];
+    
+    [loadingView addSubview:loadingIndicator];
+    [loadingView addSubview:loadingLabel];
+    [self.view addSubview:loadingView];
+    
+}
+
+-(void)hideLoadingView{
+    [loadingView setHidden:YES];
 }
 
 
@@ -195,6 +270,38 @@
     
 }
 
+-(BOOL)checkImagesDownload{
+    
+    NSInteger totalItens = [imageList count];
+    NSInteger downloadedItens = 0;
+    
+    for (int i = 0; i < [imageList count]; i++){
+        
+        Image *ImageToCheck = [imageList objectAtIndex:i];
+        
+        if([ImageToCheck haveFinishedDownloading]){
+            downloadedItens++;
+        }
+        
+    }
+    
+    
+    if(totalItens == downloadedItens){
+        return YES;
+    }else{
+        return NO;
+    }
+    
+}
+
+//Delegate
+- (void)ImageFinishedLoading{
+    if([self checkImagesDownload]){
+        
+        [self startPageController];
+        
+    }
+}
 
 /*
 #pragma mark - Navigation

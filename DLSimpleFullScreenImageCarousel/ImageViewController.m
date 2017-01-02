@@ -15,8 +15,10 @@
 @implementation ImageViewController
 @synthesize imageView;
 @synthesize image;
+@synthesize DLImage;
 
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
     
     [self.view setBackgroundColor:[UIColor blackColor]];
@@ -31,13 +33,34 @@
     
 }
 
-
-
 -(void)viewDidAppear:(BOOL)animated{
     
     [self updateFame];
     
+    CGImageRef cgref = [image CGImage];
+    CIImage *cim = [image CIImage];
+    
+    CGImageRef DLcgref = [DLImage.image CGImage];
+    CIImage *DLcim = [DLImage.image CIImage];
+    
+    if (cim == nil && cgref == NULL && DLcgref == NULL && DLcim == nil){
+        
+        //display loading indicator -> not necessary to implemenp
+        
+    }else{
+        
+        if(cim == nil && cgref == NULL){
+            
+            image = DLImage.image;
+            [imageView setImage:image];
+            
+        }else{
+            //hide loading indicator -> not necessary to implemenp
+        }
+    }
+    
     [super viewDidAppear:animated];
+    
     
 }
 

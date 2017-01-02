@@ -17,6 +17,8 @@
 
 - (void)viewDidLoad {
     
+    [super viewDidLoad];
+    
     imageList = [[NSMutableArray alloc]init];
     
     Image *img1 = [[Image alloc] init];
@@ -43,15 +45,10 @@
     [imageList addObject:img5];
     [imageList addObject:img6];
     
-    
-    
-    
-    [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
 }
 
 
--(IBAction)showMeThePictures{
+-(IBAction)showMeThePictures:(id)sender{
     
     [self performSegueWithIdentifier:@"goImageGo" sender:self];
     

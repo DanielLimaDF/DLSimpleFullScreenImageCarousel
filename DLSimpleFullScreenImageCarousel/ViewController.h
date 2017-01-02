@@ -16,7 +16,7 @@
 
 @property (nonatomic, retain) NSMutableArray *imageList;
 
--(IBAction)showMeThePictures;
+-(IBAction)showMeThePictures:(id)sender;
 
 @end
 
