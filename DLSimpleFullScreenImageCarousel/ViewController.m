@@ -31,9 +31,9 @@
     [img1 setLocalImage:@"1.jpg"];
     [img2 setLocalImage:@"2.jpg"];
     [img3 setLocalImage:@"3.jpg"];
-    [img4 setUrlImage:@"http://dlsimplefullscreenimagecarousel.42noticias.com/4.jpg"];
-    [img5 setUrlImage:@"http://dlsimplefullscreenimagecarousel.42noticias.com/5.jpg"];
-    [img6 setUrlImage:@"http://dlsimplefullscreenimagecarousel.42noticias.com/6.jpg"];
+    [img4 setUrlImage:@"http://dlsimplefullscreenimagecarousel.42noticias.mobi/4.jpg"];
+    [img5 setUrlImage:@"http://dlsimplefullscreenimagecarousel.42noticias.mobi/5.jpg"];
+    [img6 setUrlImage:@"http://dlsimplefullscreenimagecarousel.42noticias.mobi/6.jpg"];
     
     //Set content mode
     //[img2 setContentMode:UIViewContentModeScaleAspectFit]; //optional
