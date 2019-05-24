@@ -4,11 +4,11 @@ License: MIT
 
 Platform: iOs
 
-##Very simple way to show images on a full-screen carousel (Using Storyboard)
+## Very simple way to show images on a full-screen carousel (Using Storyboard)
 
 DLSimpleFullScreenImageCarousel is a Custom ViewController that shows local images or loaded from the web in a PageViewController.
 
-####GIF Screen Record:
+#### GIF Screen Record:
 
 ![GIF](https://github.com/DanielLimaDF/DLSimpleFullScreenImageCarousel/blob/master/ScreenShots/capture.gif)
 
@@ -16,8 +16,7 @@ DLSimpleFullScreenImageCarousel is a Custom ViewController that shows local imag
 
 Implementing DLSimpleFullScreenImageCarousel is fairly easy, the first step is to set up your Storyboard:
 
-![Alt][screenshot1]
-[screenshot1]: https://github.com/DanielLimaDF/DLSimpleFullScreenImageCarousel/blob/master/ScreenShots/xcode.png
+![Alt][screenshot1]: https://github.com/DanielLimaDF/DLSimpleFullScreenImageCarousel/blob/master/ScreenShots/xcode.png
 
 Simply copy the ViewController to your project and create a Segue to take to it:
 
