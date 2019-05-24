@@ -16,11 +16,13 @@ DLSimpleFullScreenImageCarousel is a Custom ViewController that shows local imag
 
 Implementing DLSimpleFullScreenImageCarousel is fairly easy, the first step is to set up your Storyboard:
 
-![Alt][screenshot1]: https://github.com/DanielLimaDF/DLSimpleFullScreenImageCarousel/blob/master/ScreenShots/xcode.png
+![Alt][screenshot1]
 
 Simply copy the ViewController to your project and create a Segue to take to it:
 
 ![Alt][screenshot2]
+
+[screenshot1]: https://github.com/DanielLimaDF/DLSimpleFullScreenImageCarousel/blob/master/ScreenShots/xcode.png
 [screenshot2]: https://github.com/DanielLimaDF/DLSimpleFullScreenImageCarousel/blob/master/ScreenShots/segue.png
 
 Coding:
